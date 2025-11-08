@@ -1,9 +1,11 @@
 import java.awt.Color;
+import java.util.Random;
 
 public class Line implements Drawable {
     private final Point x;
     private final Point y;
-    private final Color color;
+    Color color;
+    private static final Random random = new Random();
 
     public Line(Point x, Point y, Color color) {
         this.x = x;
@@ -11,6 +13,13 @@ public class Line implements Drawable {
         this.color = color;
     }
 
+    public Line(Point x, Point y) {
+        this.x = x;
+        this.y = y;
+        this.color = new Color(random.nextInt(256),
+                random.nextInt(256),
+                random.nextInt(256));
+    }
 
     @Override
     public void draw(Displayable displayable) {
@@ -37,7 +46,11 @@ public class Line implements Drawable {
     }
 
     @Override
-      public Color getColor() {
+    public Color getColor() {
         return color;
+    }
+
+    public Line random(int width , int height){
+        return new Line(new Point(random.nextInt(width), random.nextInt(height)), new Point(random.nextInt(width), random.nextInt(height)));
     }
 }
